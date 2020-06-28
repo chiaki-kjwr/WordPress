@@ -2,10 +2,12 @@
 <html lang="ja">
 
 <head>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Bootstrap core CSS -->
   <link href="<?php echo get_template_directory_uri(); ?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -13,8 +15,7 @@
 
   <!-- Custom styles for this template -->
   <link href="<?php echo get_template_directory_uri(); ?>/css/clean-blog.min.css" rel="stylesheet">
-
-  <?php wp_head(); ?>
+<?php wp_head();?>
 </head>
 
 <body>
@@ -22,7 +23,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="<?php echo home_url();?>"<?php bloginfo('name'); ?></a>
+      <a class="navbar-brand" href="index.html">Start Bootstrap</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -46,50 +47,50 @@
     </div>
   </nav>
 
+  <?php while(have_posts()):the_post(); ?>
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/home-bg.jpg')">
+  <?php
+  $id = get_post_thumbnail_id();
+  $img = wp_get_attachment_image_src($id);
+  ?>
+
+  <header class="masthead" style="background-image: url('<?php echo $img[0]; ?>')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h1>Clean Blog</h1>
-            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+          <div class="post-heading">
+            <h1><?php the_title(); ?></h1>
+            <span class="meta">Posted by
+            <p class="post-meta">Posted by
+            <?php the_author(); ?>on <?php the_time("Y-m-d"); ?></p>
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-      <?php while (have_posts()) : the_post(); ?>
-        <div class="post-preview">
-          <a href="<?php the_permalink(); ?>">
-            <h2 class="post-title">
-            <?php the_title(); ?>
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <?php the_content(); ?>
+          <dl>
+            <dt>価格</dt>
+            <?php
+            $price = get_post_meta(get_the_ID(),'価格',true);
+            ?>
+            <dd><?php the_field('価格'); ?>円</dd>
 
-            </h2>
-            <h3 class="post-subtitle">
-            <?php the_content(); ?>
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <?php the_author(); ?>on <?php the_time("Y-m-d"); ?></p>
-        </div>
-        <hr>
-        <?php endwhile; ?>
-        <!-- Pager -->
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+          </dl>
         </div>
       </div>
     </div>
-  </div>
+  </article>
 
   <hr>
+<?php endwhile; ?>
 
   <!-- Footer -->
   <footer>
@@ -133,8 +134,8 @@
   <script src="<?php echo get_template_directory_uri(); ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="<?php echo get_template_directory_uri(); ?>/js/clean-blog.min.js"></script>
-  <?php wp_footer(); ?>
+  <script src="js/clean-blog.min.js"></script>
+<?php wp_footer();?>
 </body>
 
 </html>
