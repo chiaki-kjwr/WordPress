@@ -61,9 +61,6 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
             <h1><?php the_title(); ?></h1>
-            <span class="meta">Posted by
-            <p class="post-meta">Posted by
-            <?php the_author(); ?>on <?php the_time("Y-m-d"); ?></p>
           </div>
         </div>
       </div>
@@ -75,16 +72,6 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <?php the_content(); ?>
-
-          <dl>
-            <dt>価格</dt>
-            <?php
-            $price = get_post_meta(get_the_ID(),'価格',true);
-            ?>
-            <dd><?php the_field('価格'); ?>円</dd>
-
-          </dl>
 
         </div>
       </div>
@@ -92,7 +79,7 @@
   </article>
 
   <hr>
-<?php endwhile; ?>
+
 
   <!-- Footer -->
   <footer>
