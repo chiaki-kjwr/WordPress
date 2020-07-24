@@ -36,7 +36,7 @@
 
             </h2>
             <h3 class="post-subtitle">
-            <?php the_content(); ?>
+            <?php the_excerpt(); ?>
             </h3>
           </a>
           <p class="post-meta">Posted by
@@ -46,6 +46,8 @@
         <?php endwhile; ?>
         <!-- Pager -->
         <div class="clearfix">
+        <?php previous_posts_link(); ?>
+        <?php next_posts_link(); ?>
           <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
         </div>
       </div>
