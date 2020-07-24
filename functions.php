@@ -22,3 +22,4 @@ function init_func() {
 ]);
 
 add_action('init','init_func');
+  }
