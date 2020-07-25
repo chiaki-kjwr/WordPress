@@ -57,7 +57,7 @@
   <hr>
 
   <!-- Footer -->
-<?php get_template_part('includes/footer') ?>
+<?php get_template_part('includes/nav') ?>
 
 <?php get_footer(); ?>
 
