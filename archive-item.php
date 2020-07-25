@@ -76,8 +76,7 @@
             <?php the_content(); ?>
             </h3>
           </a>
-          <p class="post-meta">Posted by
-            <?php the_author(); ?>on <?php the_time("Y-m-d"); ?></p>
+          <p>価格:<?php echo number_format(get_field('価格')); ?>円</p>
         </div>
         <hr>
         <?php endwhile; ?>

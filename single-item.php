@@ -2,7 +2,6 @@
 <html lang="ja">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Bootstrap core CSS -->
@@ -19,7 +18,6 @@
 </head>
 
 <body>
-
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
@@ -54,17 +52,17 @@
   $img = wp_get_attachment_image_src($id);
   ?>
 
-  <header class="masthead" style="background-image: url('<?php echo $img[0]; ?>')">
+  <header class="" style="background-image: url('<?php echo $img[0]; ?>')">
     <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-heading">
-            <h1><?php the_title(); ?></h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+              <h1><?php the_title(); ?></h1>
+            </div>
           </div>
         </div>
       </div>
-    </div>
   </header>
 
   <!-- Post Content -->
@@ -72,16 +70,33 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-
+        <?php the_content(); ?>
+        <?php
+            $price = get_post_meta(get_the_ID(),'価格',true);
+            ?>
+          <dl>
+            <dt>カテゴリー</dt>
+            <?php
+            $terms = get_the_terms(get_the_ID(),'item_category');
+            foreach($terms as $term);
+            ?>
+            <dd><a href ="<?php echo get_term_link($item -> $slug,'item_category');?>">
+            <?php echo htmlspecialchars($term -> $name); ?></a></dd>
+            <?php
+            endforeach;
+            ?>
+            <dt>価格</dt>
+            <dd><?php echo get_field('価格'); ?>円</dd>
+            <dt>発売日</dt>
+            <dd><?php the_field('発売日'); ?></dd>
+          </dl>
         </div>
       </div>
     </div>
   </article>
-
+  <?php endwhile; ?>
   <hr>
-
-
-  <!-- Footer -->
+<!-- Footer -->
   <footer>
     <div class="container">
       <div class="row">

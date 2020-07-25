@@ -2,7 +2,7 @@
 function init_func() {
   add_theme_support('title-tag');
   add_theme_support('post-thumbnails');
-}
+
 
   register_post_type('item',[
     'labels' => [
@@ -11,6 +11,11 @@ function init_func() {
     'public' => true,
     'has_archive' => true,
     'hierarchical' => false,
+    'supports' =>[
+      'title',
+      'editor',
+      'page-attributes'
+    ],
     'menu_position' =>  5,
     'menu_icon' => ''
   ]);
@@ -20,6 +25,7 @@ function init_func() {
         'name' =>'商品カテゴリー',
     ],
   'hierarchical' => true,
-]);
-
+  'show_in_rest' => true,
+  ]);
+  }
 add_action('init','init_func');
